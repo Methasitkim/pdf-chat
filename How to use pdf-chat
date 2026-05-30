@@ -1,0 +1,57 @@
+📄 PDF Chat — RAG System
+ระบบถาม-ตอบจากเอกสาร PDF ด้วย RAG (Retrieval-Augmented Generation)
+✨ Features
+
+อัปโหลด PDF ไฟล์ใดก็ได้
+ถามคำถามเกี่ยวกับเนื้อหาใน PDF ได้เลย
+ระบบค้นหาเนื้อหาที่เกี่ยวข้องด้วย Vector Similarity Search
+ตอบโดยอ้างอิงจากเอกสารเท่านั้น ไม่เดา
+
+🛠️ Tech Stack
+
+Python 3.x
+PyMuPDF (fitz) — อ่าน PDF
+Sentence Transformers — สร้าง Embeddings
+ChromaDB — Vector Database
+Google Gemini API — สร้างคำตอบ
+
+🏗️ Architecture
+PDF File
+   ↓ PyMuPDF
+Extract Text
+   ↓
+Split into Chunks (500 chars, overlap 50)
+   ↓ Sentence Transformers
+Convert to Embeddings
+   ↓
+Store in ChromaDB
+   ↓ User Question
+Similarity Search (Top 3 chunks)
+   ↓ Gemini API
+Generate Answer
+🚀 วิธีใช้งาน
+1. ติดตั้ง dependencies
+bashpip install pymupdf chromadb sentence-transformers google-generativeai
+2. ตั้งค่า API Key
+bashset GEMINI_API_KEY=your_api_key_here
+3. วาง PDF และรัน
+bash# วาง PDF ในโฟลเดอร์แล้วแก้ชื่อไฟล์ใน main.py
+python main.py
+ตัวอย่างการใช้งาน
+✅ พร้อมแล้ว! (89 chunks)
+
+💬 ถามคำถามเกี่ยวกับ PDF ได้เลย
+
+คำถาม: งานวิจัยนี้เกี่ยวกับอะไร?
+คำตอบ: งานวิจัยนี้ศึกษาเกี่ยวกับ Fuzzy Dark Matter Solitons...
+📁 โครงสร้างโปรเจกต์
+pdf-chat/
+├── main.py          # โค้ดหลัก
+├── test.pdf         # PDF ที่ต้องการถาม
+└── .gitignore
+💡 สิ่งที่เรียนรู้
+
+RAG Pipeline ตั้งแต่ต้นจนจบ
+Text Chunking และ Overlap strategy
+Vector Embeddings และ Similarity Search
+ChromaDB Vector Database
